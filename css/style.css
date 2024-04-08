@@ -25,12 +25,29 @@ html {
     height: 85%; /*85% movie-card'i ala kõrgusest*/
     width: 30%;
     text-align: right; /*et pilt oleks konteineri keskel*/
+    /*add for animation*/
+    position: relative;
+    left: -50rem;
+    animation: slide-from-left 3.5s ease-in-out forwards;
+}
+
+@keyframes slide-from-left {
+    80% {left: 1.3rem;}
+    100% {left: 0;}
 }
 
 .movie-poster {
     height: 100%; /*100% movie-poster'i ala kõrgusest*/
     border-radius: 5px;
     margin-right: 2rem;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+/*add hover effect*/
+.movie-poster:hover {
+    transform: scale(1.1);
+    box-shadow: 8px 8px 8px -4px white;
 }
 
 .movie-info-container {
@@ -41,8 +58,30 @@ html {
     
 }
 
+/*et teised elemendid ilmuks välja va pealkiri*/
+.movie-info-container > *:not(.movie-info-title){
+    opacity: 0;
+    animation: fade-in 3.5s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}
+
 .movie-info-title {
     text-transform: capitalize; /*esimesed on alati suurtähed*/
+    margin-top: 2rem;
+    /*add for animation*/
+    transform: translateY(-150px);
+    animation: slide-from-top 3.5s ease-in-out forwards;
+}
+
+@keyframes slide-from-top {
+    80% {transform: translateY(20px);}/*kui animatsioon jõuab 80%ni, on tekst oma asukohast 20px allpool*/
+    100% {transform: translateY(0);}  /*kui animatsioon jõuab 100%ni, on tekst oma õiges kohas*/
 }
 
 .movie-genres {
